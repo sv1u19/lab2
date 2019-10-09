@@ -1,0 +1,106 @@
+package com.company;
+
+import javax.imageio.IIOException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+    int balance;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    public static void main(String[] args) {
+        //ATM myAtm = new ATM();
+        Main myATM = new Main();
+        try {
+            myATM.go();
+        }catch (Exception e){}
+
+
+    }
+    public void go()  {
+        System.out.println("Welcome to online ATM banking");
+        System.out.println("How much do you want in your account?");
+
+        //Toolbox myToolbox = new Toolbox();
+        try {
+            while (true) {
+                //int userInputBalance = myToolbox.readIntegerFromCmd();
+                int userInputBalance = Integer.parseInt(br.readLine());
+                System.out.println(userInputBalance);
+                if (userInputBalance >= 0) {
+                    balance = userInputBalance;
+                    break;
+                }
+            }
+            while (true) {
+                System.out.println("What do you want to do?");
+                System.out.println("1 : Withdraw");
+                System.out.println("2 : Deposit");
+                System.out.println("3 : Inquire");
+                System.out.println("4 : Quit");
+                //int userInputChoice = myToolbox.readIntegerFromCmd();
+                int userInputChoice = Integer.parseInt(br.readLine());
+                if (userInputChoice == 1) withdraw();
+                else if (userInputChoice == 2) deposit();
+                else if (userInputChoice == 3) inquire();
+                else if (userInputChoice == 4) quit();
+            }
+        }catch (Exception e){}
+    }
+        private void withdraw() {
+            System.out.println("*****************************************");
+            System.out.println("              Withdrawal                 ");
+            System.out.println("*****************************************");
+            System.out.println("How much would you like to withdraw?");
+            try{
+            while (true){
+                //int userInput = myToolbox.readIntegerFromCmd();
+                int userInput = Integer.parseInt(br.readLine());
+                if(balance >= userInput && userInput >= 0) {
+
+                    balance = balance - userInput;
+                    break;
+                }
+            }
+            }catch (Exception e){}
+            System.out.println("*****************************************");
+            System.out.println("         Your new balance is " + balance);
+            System.out.println("*****************************************");
+        }
+    private void deposit() {
+        System.out.println("*****************************************");
+        System.out.println("              Deposit                    ");
+        System.out.println("*****************************************");
+        System.out.println("How much would you like to deposit?");
+        try{
+        while (true){
+            //int userInput = myToolbox.readIntegerFromCmd();
+            int userInput = Integer.parseInt(br.readLine());
+            if(userInput >= 0) {
+
+                balance = balance + userInput;
+                break;
+            }
+        }
+        }catch (Exception e){}
+        System.out.println("*****************************************");
+        System.out.println("         Your new balance is " + balance);
+        System.out.println("*****************************************");
+    }
+    private void inquire() {
+        //System.out.println("user name " + name + "\n id "+ id);
+        System.out.println("*****************************************");
+        System.out.println("         Your balance is " + balance);
+        System.out.println("*****************************************");
+    }
+    private void quit() {
+        System.out.println("*****************************************");
+        System.out.println("         GoodBye!");
+        System.out.println("*****************************************");
+        System.exit(0);
+    }
+
+    }
+
